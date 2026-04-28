@@ -1,0 +1,13 @@
+project:
+  type: website
+
+format:
+  html:
+    theme: default
+    toc: true
+    number-sections: true
+
+execute:
+  echo: true
+  warning: false
+  error: false
