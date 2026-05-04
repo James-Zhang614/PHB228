@@ -1,0 +1,310 @@
+---
+title: "PHB228 Homework 1"
+author: "A69043689"
+date: "2026-05-03"
+format:
+  html:
+    toc: true
+    number-sections: true
+execute:
+  echo: true
+  warning: false
+  message: false
+---
+
+```{r}
+#| label: setup
+library(tidyverse)
+library(bench)
+library(palmerpenguins)
+library(purrr)
+```
+
+# Part 1: Vectorization and Data Structures
+
+## 1.1 Vectorization
+
+### a)
+
+```{r}
+# TODO: Define vectorized_zscore().
+
+# TODO: Define loop_zscore().
+
+# TODO: Test both functions on a numeric column from iris.
+```
+
+### b)
+
+```{r}
+# TODO: Use bench::mark() with at least 50 iterations.
+
+# TODO: Create a bar plot comparing median execution times.
+```
+
+### c)
+
+```{r}
+# TODO: Use ChickWeight to create Growth.Rate and Weight.Gain.Percent.
+
+# TODO: Summarize average growth rate and mean maximum weight by Diet.
+```
+
+## 1.2 Data Structures and Functional Programming
+
+### a)
+
+```{r}
+# TODO: Split palmerpenguins::penguins into a list by species.
+
+# TODO: Add a sample size attribute to each species data frame.
+```
+
+### b)
+
+```{r}
+# TODO: Use lapply() to calculate numeric means excluding NAs.
+
+# TODO: Redo a comparable calculation with purrr::map_dbl().
+```
+
+### c)
+
+```{r}
+# TODO: Use tapply() for mean body mass by species.
+
+# TODO: Use tapply() for mean body mass by species and sex.
+```
+
+### d)
+
+```{r}
+# TODO: Demonstrate copy-on-modify semantics.
+```
+
+Write 2-3 sentences explaining what happened.
+
+### e)
+
+```{r}
+# TODO: Time the inefficient growing-vector loop.
+
+# TODO: Rewrite using preallocation and compare with system.time().
+```
+
+Write 2-3 sentences explaining why preallocation is faster.
+
+# Part 2: Matrix Operations and Decompositions
+
+## 2.1 Matrix Operations
+
+```{r}
+A <- matrix(c(4, 2, 1, 5), nrow = 2)
+B <- matrix(c(3, 1, 0, 2), nrow = 2)
+C <- matrix(c(1, 3, 5, 2, 4, 6), nrow = 2)
+```
+
+### a)
+
+```{r}
+# TODO: Calculate A + B.
+
+# TODO: Calculate A * B.
+
+# TODO: Calculate A %*% B.
+
+# TODO: Calculate t(A) %*% C.
+
+# TODO: Calculate solve(A).
+```
+
+Briefly explain each operation.
+
+### b)
+
+```{r}
+# TODO: Create is_symmetric().
+
+# TODO: Test it on A, B, and t(A) %*% A.
+```
+
+## 2.2 Eigenvalue Decomposition
+
+```{r}
+M <- matrix(c(4, 2, 2, 3), nrow = 2)
+```
+
+### a)
+
+```{r}
+# TODO: Compute eigenvalues and eigenvectors with eigen().
+```
+
+### b)
+
+```{r}
+# TODO: Verify Mx = lambda x for each eigenpair.
+```
+
+### c)
+
+```{r}
+# TODO: Reconstruct M using P %*% D %*% solve(P).
+
+# TODO: Verify the reconstruction matches M.
+```
+
+## 2.3 SVD and QR Decomposition
+
+### a) SVD
+
+```{r}
+X <- matrix(c(3, 2, 2, 2, 3, -2, 2, -2, 3), nrow = 3)
+
+# TODO: Compute SVD.
+
+# TODO: Create a rank-1 approximation.
+
+# TODO: Calculate the Frobenius norm of the difference.
+```
+
+Explain what information is lost in the rank-1 approximation.
+
+### b) QR and Least Squares
+
+```{r}
+set.seed(228)
+n <- 100
+x <- runif(n, -5, 5)
+y <- 3 + 2 * x + rnorm(n, sd = 1)
+
+# TODO: Create the design matrix.
+
+# TODO: Solve least squares via QR decomposition.
+
+# TODO: Compare with lm().
+```
+
+Explain the advantages of QR decomposition for least squares.
+
+# Part 3: Optimization and Simulation
+
+## 3.1 Gradient Descent
+
+### a)
+
+```{r}
+# TODO: Write rosenbrock(x).
+```
+
+### b)
+
+```{r}
+# TODO: Write rosenbrock_grad(x).
+```
+
+### c)
+
+```{r}
+# TODO: Implement gradient_descent().
+```
+
+### d)
+
+```{r}
+# TODO: Apply gradient_descent() from c(-1.2, 1.0).
+```
+
+Report the solution, function value, and iterations.
+
+## 3.2 Comparison with Built-in Methods
+
+### a)
+
+```{r}
+# TODO: Use optim() with method = "BFGS".
+```
+
+### b)
+
+```{r}
+# TODO: Use optim() with method = "Nelder-Mead".
+
+# TODO: Compare gradient descent, BFGS, and Nelder-Mead.
+```
+
+Discuss solution accuracy, iterations, and function evaluations.
+
+## 3.3 Simulation Study
+
+### a)
+
+```{r}
+# TODO: Write run_simulation(n_samples, n_reps, dist_type).
+```
+
+### b)
+
+```{r}
+# TODO: Run simulations for normal, t(df = 3), and contaminated normal.
+
+# TODO: Calculate bias, variance, and MSE for each estimator.
+```
+
+### c)
+
+```{r}
+# TODO: Create a summary table.
+```
+
+Write 3-5 sentences interpreting estimator performance.
+
+# Part 4: Bootstrap Methods
+
+## 4.1 Bootstrap Confidence Intervals
+
+### a)
+
+```{r}
+set.seed(42)
+returns <- rnorm(50, mean = 0.08, sd = 0.12)
+returns <- returns + rexp(50, rate = 20) - 0.05
+
+# TODO: Implement bootstrap_mean().
+
+# TODO: Report percentile, basic, and normal intervals.
+```
+
+### b)
+
+```{r}
+# TODO: Plot the bootstrap distribution and add vertical CI lines.
+```
+
+Discuss which CI method is most appropriate and why.
+
+## 4.2 Bootstrap Hypothesis Testing
+
+### a)
+
+```{r}
+set.seed(123)
+control <- rnorm(40, mean = 10, sd = 2)
+treatment <- rnorm(40, mean = 11.5, sd = 2)
+
+# TODO: Implement bootstrap_ttest().
+
+# TODO: Plot the bootstrap null distribution with observed difference.
+```
+
+### b)
+
+```{r}
+# TODO: Compare bootstrap test results with t.test().
+```
+
+Discuss differences and potential advantages of the bootstrap approach.
+
+# Academic Integrity
+
+I used AI assistance to organize the repository and create a Quarto response template. All final code, analysis, and interpretations should be completed and checked individually before submission.
