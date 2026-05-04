@@ -15,6 +15,10 @@ This repository contains the scaffold for PHB228 Homework 1.
    ```powershell
    quarto render hw1_A69043689.qmd
    ```
+   If the Quarto command fails because of the Windows `Program Files` path, run:
+   ```powershell
+   .\render_hw1.ps1
+   ```
 3. Commit and push the `.qmd` file and rendered output to your personal GitHub repository.
 
 ## Submission Note
