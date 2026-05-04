@@ -134,10 +134,14 @@ numeric_means_lapply <- lapply(penguin_by_species, function(df) {
 
 numeric_means_lapply
 
-body_mass_means_map <- penguin_by_species |>
-  map_dbl(~ mean(.x$body_mass_g, na.rm = TRUE))
+numeric_means_map <- penguin_by_species |>
+  map(function(df) {
+    df |>
+      select(where(is.numeric)) |>
+      map_dbl(mean, na.rm = TRUE)
+  })
 
-body_mass_means_map
+numeric_means_map
 ```
 
 ### c)
@@ -414,7 +418,7 @@ optimization_comparison <- tibble(
   x1 = c(gd_result$solution[1], bfgs_result$par[1], nelder_mead_result$par[1]),
   x2 = c(gd_result$solution[2], bfgs_result$par[2], nelder_mead_result$par[2]),
   function_value = c(gd_result$value, bfgs_result$value, nelder_mead_result$value),
-  iterations = c(gd_result$iterations, bfgs_result$counts["gradient"], NA),
+  reported_iterations = c(gd_result$iterations, bfgs_result$counts["gradient"], NA),
   function_evaluations = c(NA, bfgs_result$counts["function"], nelder_mead_result$counts["function"])
 )
 
