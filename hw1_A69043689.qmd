@@ -609,7 +609,3 @@ tibble(
 ```
 
 The bootstrap and Welch t-test both indicate a statistically meaningful positive difference between the treatment and control means for these simulated data. Their p-values may differ slightly because the bootstrap uses the empirical resampling distribution rather than the theoretical t approximation. The bootstrap approach is useful when normality or equal-variance assumptions are questionable, and it can be adapted to statistics whose standard errors are harder to derive analytically. The t-test remains efficient and simple when its assumptions are reasonable.
-
-# Academic Integrity
-
-I used AI assistance to organize the repository, complete the Quarto response template, and check rendering. I reviewed the code, output, and written interpretations before submission.
