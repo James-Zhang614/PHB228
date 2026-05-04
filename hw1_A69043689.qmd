@@ -88,13 +88,8 @@ chick_growth <- ChickWeight |>
   group_by(Chick) |>
   mutate(
     first_weight = first(weight),
-    first_time = first(Time),
     last_weight = last(weight),
-    Growth.Rate = if_else(
-      Time == first_time,
-      NA_real_,
-      (weight - first_weight) / (Time - first_time)
-    ),
+    Growth.Rate = (weight - lag(weight)) / (Time - lag(Time)),
     Weight.Gain.Percent = (last_weight - first_weight) / first_weight * 100
   ) |>
   ungroup()
